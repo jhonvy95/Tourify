@@ -96,7 +96,6 @@ export default function index() {
 
         <TextInput
           onChangeText={(value) => setEmail(value)}
-          secureTextEntry={true}
           style={styles.input}
           placeholder="Enter Email"
         />
