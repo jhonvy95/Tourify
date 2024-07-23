@@ -30,14 +30,12 @@ export default function SearchPlace() {
         placeholder="Search Place"
         fetchDetails={true}
         onPress={(data, details = null) => {
-          console.log(details, "details");
-          console.log((details as any)?.photos[0]?.photo_reference);
           setTripData({
             locationInfo: {
               name: data.description,
-              cordinates: details?.geometry.location,
+              coordinates: details?.geometry.location!,
               photoRef: (details as any)?.photos[0]?.photo_reference,
-              url: details?.url,
+              url: details?.url!,
             },
           });
           router.push("/create-trip/select-traveler");

@@ -1,37 +1,22 @@
-import { View, Text, TouchableOpacity, ToastAndroid } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, ToastAndroid } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import CalendarPicker from "react-native-calendar-picker";
-import moment, { Moment } from "moment";
+import { selectBudgetOptions } from "@/constants/options";
+import OptionCard from "@/components/CreateTrip/OptionCard";
 import { CreateTripContext } from "@/context/CreateTripContext";
 
-export default function SelectDates() {
+export default function SelectBudget() {
   const navigation = useNavigation();
   const router = useRouter();
   const { tripData, setTripData } = useContext(CreateTripContext);
+  const [selectedBudget, setSelectedBudget] = useState({
+    id: 2,
+    title: "Luxury",
+    desc: "Dont worry about the cost",
+    icon: "💸",
+  });
 
-  const [startDate, setStartDate] = useState<Moment | null>(null);
-  const [endDate, setEndDate] = useState<Moment | null>(null);
-
-  const onDateChange = (date: Date, type: "START_DATE" | "END_DATE") => {
-    if (type === "START_DATE") {
-      setStartDate(moment(date));
-    } else {
-      setEndDate(moment(date));
-    }
-  };
-
-  const onDateSelectionContinue = () => {
-    if (!startDate || !endDate) {
-      ToastAndroid.show("Please select both start and end dates", ToastAndroid.LONG);
-      return;
-    }
-    const totalNoOfDays = endDate.diff(startDate, "days");
-    console.log(totalNoOfDays);
-    setTripData({ ...tripData, startDate, endDate, totalNoOfDays: totalNoOfDays + 1 });
-    router.push("/create-trip/select-budget");
-  };
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -39,6 +24,18 @@ export default function SelectDates() {
       headerTitle: "",
     });
   }, []);
+
+  useEffect(() => {
+    setTripData({ ...tripData, budget: selectedBudget?.title });
+  }, [selectedBudget]);
+
+  const onClickContinue = () => {
+    if (!selectedBudget) {
+      ToastAndroid.show("Please select your budget", ToastAndroid.LONG);
+      return;
+    }
+    router.push("/create-trip/review-trip");
+  };
   return (
     <View
       style={{
@@ -56,29 +53,38 @@ export default function SelectDates() {
           textAlign: "center",
         }}
       >
-        Travel Dates
+        Budget
       </Text>
       <View
         style={{
-          marginTop: 30,
+          marginTop: 20,
         }}
       >
-        <CalendarPicker
-          onDateChange={onDateChange}
-          allowRangeSelection={true}
-          minDate={new Date()}
-          maxRangeDuration={5}
-          selectedRangeStyle={{
-            backgroundColor: Colors.gray,
+        <Text
+          style={{
+            fontFamily: "outfit-bold",
+            fontSize: 20,
+            textAlign: "center",
           }}
-          selectedDayTextStyle={{
-            color: Colors.white,
-          }}
+        >
+          Choose sepending habits for your trip
+        </Text>
+        <FlatList
+          data={selectBudgetOptions}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => setSelectedBudget(item)}
+              style={{
+                marginVertical: 10,
+              }}
+            >
+              <OptionCard option={item} selectedOption={selectedBudget!} />
+            </TouchableOpacity>
+          )}
         />
       </View>
-
       <TouchableOpacity
-        onPress={onDateSelectionContinue}
+        onPress={() => onClickContinue()}
         style={{
           padding: 15,
           backgroundColor: Colors.primary,
