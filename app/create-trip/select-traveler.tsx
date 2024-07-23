@@ -9,7 +9,13 @@ import { CreateTripContext } from "@/context/CreateTripContext";
 export default function SelectTraveler() {
   const navigation = useNavigation();
   const router = useRouter();
-  const [selectedTraveler, setSelectedTraveler] = useState<SelectTravelList | null>(null);
+  const [selectedTraveler, setSelectedTraveler] = useState<SelectTravelList>({
+    id: 1,
+    title: "Just Me",
+    desc: "A sole traveles in exploration",
+    icon: "✈️",
+    people: "1 People",
+  });
   const { tripData, setTripData } = useContext(CreateTripContext);
   useEffect(() => {
     navigation.setOptions({
