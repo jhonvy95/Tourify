@@ -1,13 +1,13 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { SelectTravelList } from "@/constants/options";
+import { SelectBudgetOptions, SelectTravelList } from "@/constants/options";
 import { Colors } from "@/constants/Colors";
 
 type OptionCardProps = {
-  option: SelectTravelList;
-  selectedTraveler: SelectTravelList;
+  option: SelectTravelList | SelectBudgetOptions;
+  selectedOption: SelectTravelList | SelectBudgetOptions;
 };
-export default function OptionCard({ option, selectedTraveler }: OptionCardProps) {
+export default function OptionCard({ option, selectedOption }: OptionCardProps) {
   return (
     <View
       style={[
@@ -19,7 +19,7 @@ export default function OptionCard({ option, selectedTraveler }: OptionCardProps
           backgroundColor: Colors.light_gray,
           borderRadius: 15,
         },
-        selectedTraveler?.id === option?.id && { borderWidth: 2 },
+        selectedOption?.id === option?.id && { borderWidth: 2 },
       ]}
     >
       <View>

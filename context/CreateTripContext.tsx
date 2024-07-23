@@ -1,14 +1,33 @@
+import { SelectTravelList } from "@/constants/options";
+import { Moment } from "moment";
 import { createContext, ReactElement, useState, Dispatch, SetStateAction } from "react";
 
-// Define the shape of your context value
+interface LocationInfo {
+  name: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  photoRef: string;
+  url: string;
+}
+
+interface TripData {
+  locationInfo?: LocationInfo;
+  traveler?: SelectTravelList;
+  startDate?: Moment | null;
+  endDate?: Moment | null;
+  totalNoOfDays?: number;
+  budget?: string;
+}
 interface TripContextType {
-  tripData: any[];
-  setTripData: Dispatch<SetStateAction<any[]>>;
+  tripData: TripData;
+  setTripData: Dispatch<SetStateAction<TripData>>;
 }
 
 // Create a context with a default value
 const defaultValue: TripContextType = {
-  tripData: [],
+  tripData: {},
   setTripData: () => {},
 };
 
@@ -19,7 +38,7 @@ interface ChildrenType {
 }
 
 export const CreateTripProvider = ({ children }: ChildrenType) => {
-  const [tripData, setTripData] = useState<any[]>([]);
+  const [tripData, setTripData] = useState<TripData>({});
 
   return (
     <CreateTripContext.Provider value={{ tripData, setTripData }}>

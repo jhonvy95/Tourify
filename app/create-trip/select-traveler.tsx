@@ -9,6 +9,7 @@ import { CreateTripContext } from "@/context/CreateTripContext";
 export default function SelectTraveler() {
   const navigation = useNavigation();
   const router = useRouter();
+  const { tripData, setTripData } = useContext(CreateTripContext);
   const [selectedTraveler, setSelectedTraveler] = useState<SelectTravelList>({
     id: 1,
     title: "Just Me",
@@ -16,7 +17,6 @@ export default function SelectTraveler() {
     icon: "✈️",
     people: "1 People",
   });
-  const { tripData, setTripData } = useContext(CreateTripContext);
   useEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -72,7 +72,7 @@ export default function SelectTraveler() {
                 marginVertical: 10,
               }}
             >
-              <OptionCard option={item} selectedTraveler={selectedTraveler!} />
+              <OptionCard option={item} selectedOption={selectedTraveler!} />
             </TouchableOpacity>
           )}
         />
@@ -84,7 +84,7 @@ export default function SelectTraveler() {
           padding: 15,
           backgroundColor: Colors.primary,
           borderRadius: 99,
-          marginTop: 20,
+          marginTop: 80,
           borderWidth: 1,
         }}
       >

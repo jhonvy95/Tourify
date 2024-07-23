@@ -6,6 +6,10 @@ export type SelectTravelList = {
   people: string;
 };
 
+// create a new type based on SelectTravelList but don't have propertie people.
+
+export type SelectBudgetOptions = Omit<SelectTravelList, "people">;
+
 export const selectTravelesList: SelectTravelList[] = [
   {
     id: 1,
@@ -34,5 +38,26 @@ export const selectTravelesList: SelectTravelList[] = [
     desc: "A bunch of thrill-seekes",
     icon: "🚢",
     people: "5 to 10 People",
+  },
+];
+
+export const selectBudgetOptions = [
+  {
+    id: 1,
+    title: "Cheap",
+    desc: "Stay conscious of costs",
+    icon: "💵",
+  },
+  {
+    id: 2,
+    title: "Moderate",
+    desc: "Keep cost on the average side",
+    icon: "💰",
+  },
+  {
+    id: 3,
+    title: "Luxury",
+    desc: "Dont worry about the cost",
+    icon: "💸",
   },
 ];
