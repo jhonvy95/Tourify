@@ -1,10 +1,10 @@
-import { View, Text, TouchableOpacity, ToastAndroid } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import CalendarPicker from "react-native-calendar-picker";
-import moment, { Moment } from "moment";
 import { CreateTripContext } from "@/context/CreateTripContext";
+import { useNavigation, useRouter } from "expo-router";
+import moment, { Moment } from "moment";
+import React, { useContext, useEffect, useState } from "react";
+import { Text, ToastAndroid, TouchableOpacity, View } from "react-native";
+import CalendarPicker from "react-native-calendar-picker";
 
 export default function SelectDates() {
   const navigation = useNavigation();

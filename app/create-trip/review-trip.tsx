@@ -1,15 +1,14 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React, { useContext, useEffect } from "react";
-import { useNavigation } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
-import MyTrip from "../(tabs)/mytrip";
 import { CreateTripContext } from "@/context/CreateTripContext";
+import { useNavigation, useRouter } from "expo-router";
 import moment from "moment";
+import React, { useContext, useEffect } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 
 export default function ReviewTrip() {
   const navigation = useNavigation();
-  const { tripData, setTripData } = useContext(CreateTripContext);
+  const { tripData } = useContext(CreateTripContext);
+  const router = useRouter();
 
   useEffect(() => {
     navigation.setOptions({
@@ -207,7 +206,7 @@ export default function ReviewTrip() {
         </View>
       </View>
       <TouchableOpacity
-        // onPress={() => router.replace("create-trip/select-dates")}
+        onPress={() => router.replace("create-trip/generate-trip")}
         style={{
           padding: 15,
           backgroundColor: Colors.primary,
