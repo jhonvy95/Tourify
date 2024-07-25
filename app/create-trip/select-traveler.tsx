@@ -28,6 +28,7 @@ export default function SelectTraveler() {
   useEffect(() => {
     setTripData({ ...tripData, traveler: selectedTraveler });
   }, [selectedTraveler]);
+  console.log(tripData);
   return (
     <View
       style={{
@@ -84,7 +85,7 @@ export default function SelectTraveler() {
           padding: 15,
           backgroundColor: Colors.primary,
           borderRadius: 99,
-          marginTop: 80,
+          marginTop: 20,
           borderWidth: 1,
         }}
       >

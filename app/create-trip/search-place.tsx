@@ -1,9 +1,9 @@
-import { View, Text } from "react-native";
-import React, { useContext, useEffect } from "react";
-import { useNavigation, useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { CreateTripContext } from "@/context/CreateTripContext";
+import { useNavigation, useRouter } from "expo-router";
+import React, { useContext, useEffect } from "react";
+import { View } from "react-native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 export default function SearchPlace() {
   const navigation = useNavigation();

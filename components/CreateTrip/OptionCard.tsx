@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
-import React from "react";
-import { SelectBudgetOptions, SelectTravelList } from "@/constants/options";
 import { Colors } from "@/constants/Colors";
+import { SelectBudgetOptions, SelectTravelList } from "@/constants/options";
+import React from "react";
+import { Text, View } from "react-native";
 
 type OptionCardProps = {
   option: SelectTravelList | SelectBudgetOptions;
