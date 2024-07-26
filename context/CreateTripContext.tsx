@@ -12,7 +12,7 @@ interface LocationInfo {
   url: string;
 }
 
-interface TripData {
+export interface TripData {
   locationInfo?: LocationInfo;
   traveler?: SelectTravelList;
   startDate?: Moment | null;
