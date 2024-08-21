@@ -6,8 +6,6 @@ export type SelectTravelList = {
   people: string;
 };
 
-// create a new type based on SelectTravelList but don't have propertie people.
-
 export type SelectBudgetOptions = Omit<SelectTravelList, "people">;
 
 export const selectTravelesList: SelectTravelList[] = [

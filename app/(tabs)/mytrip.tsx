@@ -6,8 +6,10 @@ import StartNewTripCard from "@/components/MyTrips/StartNewTripCard";
 import { collection, DocumentData, getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "@/configs/FirebaseConfig";
 import UserTripList from "@/components/MyTrips/UserTripList";
+import { useRouter } from "expo-router";
 
 export default function MyTrip() {
+  const router = useRouter();
   const [userTrips, setUserTrips] = useState<DocumentData[]>([]);
   const user = auth.currentUser;
   const [loading, setLoading] = useState(false);
@@ -60,7 +62,12 @@ export default function MyTrip() {
         >
           My Trips
         </Text>
-        <Ionicons name="add-circle-sharp" size={40} color="black" />
+        <Ionicons
+          name="add-circle-sharp"
+          size={40}
+          color="black"
+          onPress={() => router.push("/create-trip/search-place")}
+        />
       </View>
       {userTrips.length === 0 ? <StartNewTripCard /> : <UserTripList userTrips={userTrips} />}
     </ScrollView>

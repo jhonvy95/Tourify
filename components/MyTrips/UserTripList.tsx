@@ -4,6 +4,7 @@ import moment from "moment";
 import { TripData } from "@/context/CreateTripContext";
 import { Colors } from "@/constants/Colors";
 import UserTripCard from "./UserTripCard";
+import { useRouter } from "expo-router";
 
 type UserTripListProps = {
   userTrips: any[];
@@ -11,6 +12,7 @@ type UserTripListProps = {
 
 export default function UserTripList({ userTrips }: UserTripListProps) {
   const latestTrip: TripData = JSON.parse(userTrips[0].tripData);
+  const router = useRouter();
   return (
     <View>
       <View style={{ marginTop: 20 }}>
@@ -70,7 +72,12 @@ export default function UserTripList({ userTrips }: UserTripListProps) {
             </Text>
           </View>
           <TouchableOpacity
-            // onPress={() => router.replace("create-trip/select-dates")}
+            onPress={() =>
+              router.push({
+                pathname: "/trip-details",
+                params: { trip: JSON.stringify(userTrips[0]) },
+              })
+            }
             style={{
               padding: 15,
               backgroundColor: Colors.primary,
